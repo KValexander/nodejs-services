@@ -1,0 +1,14 @@
+{
+	"name": "nodejs-services",
+	"version": "1.0.0",
+	"description": "nodejs services project",
+	"author": "KValexander",
+	"main": "app.js",
+	"license": "MIT",
+	"scripts": {
+		"start": "node app.js"
+	},
+	"dependencies": {
+		"mysql2": "^2.3.3"
+	}
+}
