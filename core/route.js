@@ -13,44 +13,21 @@ const route = {
 	/* Routes */
 	_routes: {
 		GET: {},
-		POST: {}
+		POST: {},
+		PATCH: {},
+		DELETE: {}
 	},
 
-	/* Checking if a route exists */
-	checkExists: function(method, route) {
-
-		if(!(method in this._routes)) {
-			return false;
-		}
-
-		return (route in this._routes[method]);
-	},
-
-	/* Get route value */
-	getRoute: function(method, route) {
-		if(!(method in this._routes)) {
-			return {};
-		}
-
-		if(!(route in this._routes[method])) {
-			return {};
-		}
-
-		return this._routes[method][route];
-	},
-
-	/* Route group */
-	group: function(group, callback) {
-		this._groups.push({
-			group: group[0],
-			value: group[1]
-		});
-
-		callback();
-
-		this._groups.pop();
-
-		return this;
+	/* Get routes */
+	getRoutes: function() {
+		let result = this._routes;
+		this._routes = {
+			GET: {},
+			POST: {},
+			PATCH: {},
+			DELETE: {}
+		};
+		return result;
 	},
 
 	/* Add route */
@@ -87,6 +64,20 @@ const route = {
 	/* Route with type post */
 	post: function(route, value) {
 		this.add("POST", route, value);
+		return this;
+	},
+
+	/* Route group */
+	group: function(group, callback) {
+		this._groups.push({
+			group: group[0],
+			value: group[1]
+		});
+
+		callback();
+
+		this._groups.pop();
+
 		return this;
 	},
 
